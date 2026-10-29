@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A curated atlas of 24 influential AI papers and their open-source implementations. Search seven research areas in an offline snapshot."><title>Paper Trail — An atlas of ideas & implementations</title>
+<style>
+:root{--ink:#202a24;--muted:#647167;--paper:#f6f5ef;--line:#d9ded3;--green:#254d39;--accent:#c8db94}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}button,input,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a67b30;outline-offset:4px}[hidden]{display:none!important}.wrap{max-width:1400px;margin:auto;padding:0 52px}header{border-bottom:1px solid var(--line)}.masthead{height:86px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-family:Georgia,serif;font-size:25px;letter-spacing:-1px;display:flex;gap:13px;align-items:center}.mark{width:29px;height:33px;border:1.5px solid var(--green);box-shadow:5px -5px 0 -1px var(--paper),5px -5px 0 0 var(--green);display:grid;place-items:center;font-size:16px}.edition,.eyebrow,.small-label{font-family:monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}.edition{color:var(--muted)}.hero{padding:55px 0 42px;display:grid;grid-template-columns:1fr 330px;gap:64px;align-items:center}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--green)}.dot{width:7px;height:7px;display:inline-block;background:#6e8650;border-radius:50%}h1{font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:clamp(42px,5vw,66px);line-height:1.06;letter-spacing:-2.7px;margin:19px 0 20px}h1 em{color:#55734b;font-weight:normal}.intro{font-size:15px;line-height:1.7;color:var(--muted);max-width:540px;margin:0}.snapshot{border-left:1px solid var(--line);padding:7px 0 7px 30px}.snapshot h2{font-family:Georgia,serif;font-weight:normal;font-size:23px;margin:0 0 14px}.snapshot p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}.stats{display:flex;gap:35px;margin-top:22px}.stats b{font-family:Georgia,serif;font-size:29px;font-weight:normal;display:block}.stats span{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.workspace{border-top:1px solid var(--ink);padding-top:26px}.toolbar{display:flex;align-items:center;gap:20px;justify-content:space-between}.searchbox{position:relative;max-width:550px;width:100%}.searchbox svg{position:absolute;left:16px;top:16px;width:18px;height:18px;pointer-events:none}input{width:100%;padding:15px 16px 15px 46px;border:1px solid #bfc7ba;border-radius:5px;background:#fffefa;color:var(--ink);font-size:14px}input::placeholder{color:#7e867c}.reset{border:0;background:none;font-size:12px;color:var(--green);text-decoration:underline;text-underline-offset:4px;padding:12px;white-space:nowrap}.filters{display:flex;flex-wrap:wrap;gap:8px;margin:21px 0 25px}.filter{border:1px solid var(--line);border-radius:4px;background:transparent;padding:9px 13px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:12px}.filter span{font-size:10px;opacity:.75}.filter:hover{border-color:#77906b}.filter[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}.resultsbar{display:flex;justify-content:space-between;gap:16px;margin:0 0 17px;font-size:11px;color:var(--muted)}.resultsbar strong{color:var(--ink);font-weight:normal}.hint{font-family:monospace;font-size:10px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}.paper-card{background:#fffefa;border:1px solid var(--line);border-radius:6px;padding:23px 23px 18px;min-height:320px;display:flex;flex-direction:column;position:relative;transition:border-color .15s,box-shadow .15s;cursor:pointer}.paper-card:hover{border-color:#7c9671;box-shadow:0 4px 18px #263c2710}.card-meta{display:flex;align-items:center;justify-content:space-between;font-family:monospace;font-size:10px;color:var(--muted);gap:8px}.category{font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:.7px;text-transform:uppercase;padding:5px 7px;border-radius:3px;background:var(--tint);color:var(--tone)}.paper-card h2{font-family:Georgia,serif;font-weight:normal;font-size:22px;line-height:1.23;letter-spacing:-.4px;margin:18px 0 10px}.authors{font-size:11px;line-height:1.5;color:var(--muted);margin:0 0 13px}.summary{font-size:13px;line-height:1.65;color:#546156;margin:0 0 20px}.card-bottom{margin-top:auto}.links{display:flex;gap:16px;align-items:center;padding-top:14px;border-top:1px solid #e6e8e0;font-size:11px}.links a{text-decoration:none;font-weight:600}.links a:hover{text-decoration:underline;text-underline-offset:3px}.stars{margin-left:auto;color:var(--muted);font-family:monospace;font-size:10px;white-space:nowrap}.expand{display:flex;align-items:center;justify-content:space-between;width:100%;background:transparent;border:0;color:var(--muted);padding:14px 0 0;font-size:10px;text-align:left}.expand .plus{font-size:17px;line-height:12px}.details{border-top:1px solid var(--line);margin-top:17px;padding-top:16px}.details p{font-size:13px;line-height:1.7;color:#46554a;margin:0 0 14px}.badge{display:inline-block;font-size:10px;padding:6px 8px;border:1px solid #cad5c1;border-radius:3px;background:#f0f4e8;color:#365336}.badge.community{background:#fbf2df;border-color:#e6d5ab;color:#75571b}.repo-name{display:block;font-family:monospace;font-size:10px;color:var(--muted);margin-top:10px;overflow-wrap:anywhere}.empty{padding:60px 24px;text-align:center;border:1px dashed var(--line)}.empty h2{font-family:Georgia,serif;font-weight:normal}.empty p{font-size:14px;color:var(--muted)}footer{display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding:24px 0 35px;margin-top:35px;color:var(--muted);font-size:10px;line-height:1.7}footer p{margin:0;max-width:670px}.footer-brand{font-family:Georgia,serif;font-size:16px;color:var(--green);white-space:nowrap}noscript{display:block;padding:25px;background:#f7e7c8}
+@media(min-width:1100px){.paper-card h2{min-height:54px}}@media(max-width:1050px){.wrap{padding:0 30px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{gap:30px;grid-template-columns:1fr 270px}.hint{display:none}}@media(max-width:680px){.wrap{padding:0 20px}.masthead{height:72px}.edition{font-size:9px;letter-spacing:.5px}.hero{grid-template-columns:1fr;padding:35px 0 30px;gap:27px}h1{letter-spacing:-1.8px}.snapshot{padding:17px 0 0;border-left:0;border-top:1px solid var(--line)}.snapshot h2{font-size:19px}.stats{margin-top:13px}.grid{grid-template-columns:1fr}.paper-card{min-height:0}.toolbar{gap:4px}input{font-size:12px}.reset{font-size:10px;padding-right:0}.filters{gap:6px}.filter{padding:9px 10px}.resultsbar{line-height:1.5}.paper-card h2{font-size:24px}footer{flex-direction:column}.searchbox{min-width:0}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="wrap masthead"><div class="brand"><span class="mark" aria-hidden="true">↗</span>paper trail</div><span class="edition">Research → implementation / Vol. 01</span></div></header>
+<main class="wrap"><section class="hero" aria-labelledby="page-title"><div><div class="eyebrow"><span class="dot"></span>A curated research atlas</div><h1 id="page-title">Great ideas.<br><em>Working code.</em></h1><p class="intro">Trace the path from influential AI papers to their open-source implementations. A small, considered collection for curious builders.</p></div><aside class="snapshot"><h2>A snapshot, not a feed.</h2><p>Curated snapshot as of <strong>October 29, 2026</strong>.<br>Handpicked papers. Direct links to the source.<br>No live rankings. No endless scrolling.</p><div class="stats"><div><b>24</b><span>Papers</span></div><div><b>07</b><span>Research areas</span></div><div><b>10</b><span>Years · 2013–23</span></div></div></aside></section>
+<section class="workspace" aria-label="Browse the paper collection"><div class="toolbar"><div class="searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><label for="search" hidden>Search papers, authors, and summaries</label><input id="search" type="search" placeholder="Search papers, authors, or ideas…" autocomplete="off" aria-label="Search papers, authors, and summaries"></div><button id="reset" class="reset" type="button">Reset filters ↺</button></div><div id="filters" class="filters" role="group" aria-label="Filter by research area"></div><div class="resultsbar"><span id="result-count" role="status" aria-live="polite">24 papers in the collection</span><span class="hint">OPEN A CARD TO FOLLOW THE IDEA</span><span>★ Approx. stars · snapshot estimates</span></div><div id="papers" class="grid"></div><div id="empty" class="empty" hidden><h2>No papers on this trail.</h2><p>Try a different phrase or reset the filters to explore all 24 papers.</p><button class="reset" id="empty-reset" type="button">Show the full collection ↗</button></div><noscript>JavaScript is required to browse the 24-paper collection. Enable JavaScript and reload this local page to use the atlas.</noscript></section>
+<footer><div class="footer-brand">Ideas worth following. ↗</div><p>An authored snapshot, not an exhaustive index. ★ Star counts are rough editorial estimates as of the snapshot date, not verified GitHub measurements. “Official” identifies author-associated code, not a reproduction guarantee. Paper and code links open external sites in a new tab.</p></footer></main>
+<script>
+(() => {
+'use strict';
+const papers = [
+  {
+    "title": "Attention Is All You Need",
+    "authors": "Ashish Vaswani et al.",
+    "year": 2017,
+    "category": "llm",
+    "arxiv": "1706.03762",
+    "repo": "tensorflow/tensor2tensor",
+    "implementation": "Official",
+    "stars": 15000,
+    "summary": "The architecture that put attention at the center of language modeling.",
+    "longSummary": "Replaces recurrence with multi-head self-attention and positional encodings. The original experiments focus on machine translation; the linked research library includes the Transformer implementation and training recipes."
+  },
+  {
+    "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    "authors": "Jacob Devlin et al.",
+    "year": 2018,
+    "category": "llm",
+    "arxiv": "1810.04805",
+    "repo": "google-research/bert",
+    "implementation": "Official",
+    "stars": 38000,
+    "summary": "Bidirectional pretraining turns one encoder into many language tools.",
+    "longSummary": "Masked language modeling lets an encoder learn from context on both sides of a token. Fine-tuning adapts the same pretrained backbone to classification, question answering, and other language understanding tasks."
+  },
+  {
+    "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+    "authors": "Colin Raffel et al.",
+    "year": 2019,
+    "category": "llm",
+    "arxiv": "1910.10683",
+    "repo": "google-research/text-to-text-transfer-transformer",
+    "implementation": "Official",
+    "stars": 6000,
+    "summary": "Frame language tasks in a shared text-to-text format.",
+    "longSummary": "T5 treats translation, summarization, classification, and other tasks as text input and text output. A systematic study compares pretraining objectives and transfer approaches, with code and pretrained models in the official repository."
+  },
+  {
+    "title": "LLaMA: Open and Efficient Foundation Language Models",
+    "authors": "Hugo Touvron et al.",
+    "year": 2023,
+    "category": "llm",
+    "arxiv": "2302.13971",
+    "repo": "meta-llama/llama",
+    "implementation": "Official",
+    "stars": 56000,
+    "summary": "Smaller language models trained longer on publicly available data.",
+    "longSummary": "Explores a family of foundation models from 7B to 65B parameters. The repository provides inference code; access to weights and their license is separate from the availability of the implementation."
+  },
+  {
+    "title": "Denoising Diffusion Probabilistic Models",
+    "authors": "Jonathan Ho, Ajay Jain & Pieter Abbeel",
+    "year": 2020,
+    "category": "diffusion",
+    "arxiv": "2006.11239",
+    "repo": "hojonathanho/diffusion",
+    "implementation": "Official",
+    "stars": 3000,
+    "summary": "Generate images by learning to reverse a gradual noising process.",
+    "longSummary": "A neural network learns denoising steps that transform random noise into a sample. The diffusion training objective connects to denoising score matching, with a simple parameterization that produces high-quality image synthesis."
+  },
+  {
+    "title": "Denoising Diffusion Implicit Models",
+    "authors": "Jiaming Song, Chenlin Meng & Stefano Ermon",
+    "year": 2020,
+    "category": "diffusion",
+    "arxiv": "2010.02502",
+    "repo": "ermongroup/ddim",
+    "implementation": "Official",
+    "stars": 3000,
+    "summary": "A faster route through the diffusion sampling process.",
+    "longSummary": "Introduces a family of non-Markovian diffusion processes with the same training objective as DDPM. Deterministic sampling can use fewer steps, and the latent representation supports interpolation between generated images."
+  },
+  {
+    "title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+    "authors": "Robin Rombach et al.",
+    "year": 2021,
+    "category": "diffusion",
+    "arxiv": "2112.10752",
+    "repo": "CompVis/latent-diffusion",
+    "implementation": "Official",
+    "stars": 13000,
+    "summary": "Move diffusion into a compressed latent space to reduce compute.",
+    "longSummary": "An autoencoder first compresses images, then a diffusion model learns in that smaller representation. Cross-attention enables conditioning on text and other inputs without paying the full cost of diffusion in pixel space."
+  },
+  {
+    "title": "Adding Conditional Control to Text-to-Image Diffusion Models",
+    "authors": "Lvmin Zhang, Anyi Rao & Maneesh Agrawala",
+    "year": 2023,
+    "category": "diffusion",
+    "arxiv": "2302.05543",
+    "repo": "lllyasviel/ControlNet",
+    "implementation": "Official",
+    "stars": 33000,
+    "summary": "Guide image generation with edges, poses, and spatial structure.",
+    "longSummary": "ControlNet adds trainable branches to a frozen pretrained diffusion model. Zero-initialized convolutions allow new spatial conditions to be learned while retaining the original image generation capabilities."
+  },
+  {
+    "title": "Playing Atari with Deep Reinforcement Learning",
+    "authors": "Volodymyr Mnih et al.",
+    "year": 2013,
+    "category": "rl",
+    "arxiv": "1312.5602",
+    "repo": "google-deepmind/dqn",
+    "implementation": "Official",
+    "stars": 7000,
+    "summary": "Learn control policies directly from pixels and game rewards.",
+    "longSummary": "Combines convolutional networks with Q-learning and experience replay. The linked DeepMind DQN repository accompanies the later Nature version of this line of work, rather than being an exact release of the 2013 experiments."
+  },
+  {
+    "title": "Proximal Policy Optimization Algorithms",
+    "authors": "John Schulman et al.",
+    "year": 2017,
+    "category": "rl",
+    "arxiv": "1707.06347",
+    "repo": "openai/baselines",
+    "implementation": "Official",
+    "stars": 16000,
+    "summary": "Stable policy updates with a practical clipped training objective.",
+    "longSummary": "Limits the incentive for overly large policy changes while allowing multiple optimization passes over collected experience. OpenAI Baselines includes PPO along with reference implementations of other reinforcement learning algorithms."
+  },
+  {
+    "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+    "authors": "Tuomas Haarnoja et al.",
+    "year": 2018,
+    "category": "rl",
+    "arxiv": "1801.01290",
+    "repo": "haarnoja/sac",
+    "implementation": "Official",
+    "stars": 2000,
+    "summary": "Balance reward and exploration with an entropy-aware actor-critic.",
+    "longSummary": "Optimizes both expected reward and policy entropy. Reusing experience makes this off-policy method useful for continuous control; the repository preserves the original implementation and its experimental setup."
+  },
+  {
+    "title": "Deep Residual Learning for Image Recognition",
+    "authors": "Kaiming He et al.",
+    "year": 2015,
+    "category": "vision",
+    "arxiv": "1512.03385",
+    "repo": "KaimingHe/deep-residual-networks",
+    "implementation": "Official",
+    "stars": 6000,
+    "summary": "Skip connections make much deeper visual networks trainable.",
+    "longSummary": "Residual blocks learn a correction to their input instead of an entirely new transformation. Identity shortcuts help optimization as networks grow deeper, yielding a widely reused backbone for visual recognition."
+  },
+  {
+    "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+    "authors": "Alexey Dosovitskiy et al.",
+    "year": 2020,
+    "category": "vision",
+    "arxiv": "2010.11929",
+    "repo": "google-research/vision_transformer",
+    "implementation": "Official",
+    "stars": 11000,
+    "summary": "Treat image patches as a sequence and apply a Transformer.",
+    "longSummary": "Splits each image into fixed-size patches and embeds them as tokens. Large-scale pretraining enables a relatively direct Transformer architecture to perform image classification without a convolutional backbone."
+  },
+  {
+    "title": "Emerging Properties in Self-Supervised Vision Transformers",
+    "authors": "Mathilde Caron et al.",
+    "year": 2021,
+    "category": "vision",
+    "arxiv": "2104.14294",
+    "repo": "facebookresearch/dino",
+    "implementation": "Official",
+    "stars": 6000,
+    "summary": "Learn visual representations through self-distillation without labels.",
+    "longSummary": "DINO trains a student network to match a momentum-updated teacher across different views of an image. Its learned features support strong nearest-neighbor classification and show object-related structure in attention maps."
+  },
+  {
+    "title": "Segment Anything",
+    "authors": "Alexander Kirillov et al.",
+    "year": 2023,
+    "category": "vision",
+    "arxiv": "2304.02643",
+    "repo": "facebookresearch/segment-anything",
+    "implementation": "Official",
+    "stars": 47000,
+    "summary": "Promptable segmentation brings reusable object masks to images.",
+    "longSummary": "Introduces a model and data collection approach for promptable image segmentation. Point, box, and mask prompts guide segmentation; the linked repository provides inference code, model checkpoints, and example notebooks."
+  },
+  {
+    "title": "Learning Transferable Visual Models From Natural Language Supervision",
+    "authors": "Alec Radford et al.",
+    "year": 2021,
+    "category": "multimodal",
+    "arxiv": "2103.00020",
+    "repo": "openai/CLIP",
+    "implementation": "Official",
+    "stars": 26000,
+    "summary": "Connect images and language in a shared representation space.",
+    "longSummary": "Contrastive learning aligns matching images and text while separating mismatched pairs. Natural-language descriptions can act as classification labels at inference time, enabling zero-shot transfer to visual tasks."
+  },
+  {
+    "title": "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models",
+    "authors": "Junnan Li et al.",
+    "year": 2023,
+    "category": "multimodal",
+    "arxiv": "2301.12597",
+    "repo": "salesforce/LAVIS",
+    "implementation": "Official",
+    "stars": 10000,
+    "summary": "A lightweight bridge connects frozen vision and language models.",
+    "longSummary": "The Querying Transformer extracts useful visual information for a frozen language model. Two-stage pretraining builds this bridge while reducing the amount of trainable machinery; LAVIS hosts the implementation."
+  },
+  {
+    "title": "Visual Instruction Tuning",
+    "authors": "Haotian Liu et al.",
+    "year": 2023,
+    "category": "multimodal",
+    "arxiv": "2304.08485",
+    "repo": "haotian-liu/LLaVA",
+    "implementation": "Official",
+    "stars": 19000,
+    "summary": "Instruction tuning turns a vision-language model into an assistant.",
+    "longSummary": "Connects a visual encoder to a language model and trains on multimodal instruction-following data. The LLaVA repository contains training and inference tools; later repository versions extend beyond the original paper."
+  },
+  {
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": "Shunyu Yao et al.",
+    "year": 2022,
+    "category": "agents",
+    "arxiv": "2210.03629",
+    "repo": "ysymyth/ReAct",
+    "implementation": "Official",
+    "stars": 3000,
+    "summary": "Interleave reasoning with actions and observations from an environment.",
+    "longSummary": "Prompts language models to alternate reasoning traces and task-specific actions. Observations from tools or environments inform subsequent steps, demonstrated on question answering and interactive decision-making tasks."
+  },
+  {
+    "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "authors": "Timo Schick et al.",
+    "year": 2023,
+    "category": "agents",
+    "arxiv": "2302.04761",
+    "repo": "lucidrains/toolformer-pytorch",
+    "implementation": "Community",
+    "stars": 3000,
+    "summary": "Train a language model to decide when and how to call tools.",
+    "longSummary": "Self-supervised annotation proposes API calls, tests their usefulness for prediction, and filters training examples. The linked PyTorch project is a community implementation, not the original authors’ released experimental code."
+  },
+  {
+    "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+    "authors": "Guanzhi Wang et al.",
+    "year": 2023,
+    "category": "agents",
+    "arxiv": "2305.16291",
+    "repo": "MineDojo/Voyager",
+    "implementation": "Official",
+    "stars": 6000,
+    "summary": "A Minecraft agent builds a reusable library of executable skills.",
+    "longSummary": "An automatic curriculum proposes tasks, an iterative prompting loop improves code, and a skill library stores successful behaviors. Running the original system requires a Minecraft environment and external model access; this atlas only links the source."
+  },
+  {
+    "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+    "authors": "Edward J. Hu et al.",
+    "year": 2021,
+    "category": "efficiency",
+    "arxiv": "2106.09685",
+    "repo": "microsoft/LoRA",
+    "implementation": "Official",
+    "stars": 10000,
+    "summary": "Adapt large models by training small low-rank weight updates.",
+    "longSummary": "Freezes pretrained weights and introduces trainable low-rank matrices in selected layers. This substantially reduces trainable parameters and optimizer storage; updates can be merged into the original weights for inference."
+  },
+  {
+    "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+    "authors": "Tim Dettmers et al.",
+    "year": 2023,
+    "category": "efficiency",
+    "arxiv": "2305.14314",
+    "repo": "artidoro/qlora",
+    "implementation": "Official",
+    "stars": 10000,
+    "summary": "Pair four-bit base models with trainable low-rank adapters.",
+    "longSummary": "Combines NormalFloat quantization, double quantization, and paged optimizers with adapter training. Gradients pass through a frozen quantized model into LoRA adapters, making fine-tuning large models possible with less accelerator memory."
+  },
+  {
+    "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+    "authors": "Tri Dao et al.",
+    "year": 2022,
+    "category": "efficiency",
+    "arxiv": "2205.14135",
+    "repo": "Dao-AILab/flash-attention",
+    "implementation": "Official",
+    "stars": 13000,
+    "summary": "Make exact attention faster by reducing memory traffic.",
+    "longSummary": "Tiles attention computation to use fast on-chip memory and avoid materializing the full attention matrix in device memory. The linked repository includes subsequent FlashAttention versions as well as optimized GPU kernels."
+  }
+];
+const categoryInfo = {llm:['LLM','#edf0dd','#57602b'],diffusion:['Diffusion','#eee6f3','#75528b'],rl:['RL','#f8ebd8','#866127'],vision:['Vision','#e2ede9','#3d7164'],multimodal:['Multimodal','#e3ebf5','#4c6d97'],agents:['Agents','#f4e4dc','#9b6047'],efficiency:['Efficiency','#e8ebdc','#63713e']};
+const paperGrid = document.getElementById('papers');
+const filterGroup = document.getElementById('filters');
+const searchInput = document.getElementById('search');
+let selectedCategory = 'all';
+const escapeText = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+const categories = [...new Set(papers.map(paper => paper.category))];
+filterGroup.innerHTML = ['all', ...categories].map(category => `<button type="button" class="filter" data-category="${category}" aria-pressed="${category === 'all'}">${category === 'all' ? 'All papers' : categoryInfo[category][0]}<span>${category === 'all' ? papers.length : papers.filter(paper => paper.category === category).length}</span></button>`).join('');
+paperGrid.innerHTML = papers.map((paper, index) => {
+const [label,tint,tone] = categoryInfo[paper.category];
+return `<article class="paper-card" data-category="${paper.category}" style="--tint:${tint};--tone:${tone}" aria-labelledby="title-${index}"><div class="card-meta"><span class="category">${label}</span><span>${paper.year} <span aria-hidden="true"> / ${String(index+1).padStart(2,'0')}</span></span></div><h2 id="title-${index}">${escapeText(paper.title)}</h2><p class="authors">${escapeText(paper.authors)}</p><p class="summary">${escapeText(paper.summary)}</p><div class="card-bottom"><div class="links"><a href="https://arxiv.org/abs/${paper.arxiv}" target="_blank" rel="noopener noreferrer" aria-label="Read paper: ${escapeText(paper.title)}">Paper ↗</a><a href="https://github.com/${paper.repo}" target="_blank" rel="noopener noreferrer" aria-label="View code: ${escapeText(paper.repo)}">Code ↗</a><span class="stars" title="Rough editorial star estimate as of October 29, 2026; not a verified measurement">☆ ~${Math.round(paper.stars/1000)}k</span></div><button class="expand" type="button" aria-expanded="false" aria-controls="details-${index}"><span>Explore this paper</span><span class="plus" aria-hidden="true">+</span></button><div class="details" id="details-${index}" hidden><p>${escapeText(paper.longSummary)}</p><span class="badge ${paper.implementation === 'Community' ? 'community' : ''}">${paper.implementation} implementation</span><span class="repo-name">${paper.repo}</span></div></div></article>`;
+}).join('');
+const cards = [...paperGrid.querySelectorAll('.paper-card')];
+function applyFilters() {
+const query = searchInput.value.trim().toLowerCase();
+let visibleCount = 0;
+cards.forEach((card,index) => {
+const paper = papers[index];
+const searchText = [paper.title,paper.authors,paper.summary,paper.longSummary].join(' ').toLowerCase();
+const matches = (selectedCategory === 'all' || paper.category === selectedCategory) && searchText.includes(query);
+card.hidden = !matches;
+if(matches) visibleCount++;
+});
+filterGroup.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === selectedCategory)));
+document.getElementById('result-count').textContent = `${visibleCount} of ${papers.length} papers${selectedCategory !== 'all' ? ' · ' + categoryInfo[selectedCategory][0] : ' · All research areas'}`;
+document.getElementById('empty').hidden = visibleCount !== 0;
+}
+function clearFilters() {searchInput.value = ''; selectedCategory = 'all'; applyFilters();}
+searchInput.addEventListener('input', applyFilters);
+filterGroup.addEventListener('click', clickEvent => {const button = clickEvent.target.closest('button'); if(!button) return; selectedCategory = button.dataset.category; applyFilters();});
+document.getElementById('reset').addEventListener('click', clearFilters);
+document.getElementById('empty-reset').addEventListener('click', clearFilters);
+paperGrid.addEventListener('click', clickEvent => {
+if(clickEvent.target.closest('a')) return;
+const card = clickEvent.target.closest('.paper-card');
+if(!card) return;
+const expanded = card.classList.toggle('expanded');
+card.querySelector('.details').hidden = !expanded;
+const expandButton = card.querySelector('.expand');
+expandButton.setAttribute('aria-expanded', String(expanded));
+expandButton.querySelector('span').textContent = expanded ? 'Close details' : 'Explore this paper';
+expandButton.querySelector('.plus').textContent = expanded ? '−' : '+';
+});
+applyFilters();
+})();
+</script></body></html>
